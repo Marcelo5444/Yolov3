@@ -51,7 +51,7 @@ def display_bounding_boxes(df,path_to_images=None,path_to_labels=None,specific_i
 def create_label_datframe(path_to_labels=None):
 	path_to_labels = "/home/mlrig/Documents/Yolo3 Implementation/data/training/label_2/"
 	labels = os.listdir(path_to_labels)
-	d = {"image":[],"type":[],"x_min":[],"y_min":[],"x_max":[],"y_max":[]}	
+	d = {"image":[],"type":[],"x_min":[],"y_min":[],"x_max":[],"y_max":[],"height":[],"width":[]}	
 	for label in labels:
 		f = open(os.path.join(path_to_labels,label), "r")
 		data = f.read()
@@ -66,9 +66,13 @@ def create_label_datframe(path_to_labels=None):
 				if register[0] in ["Van","Car","Truck"]:
 					register[0] = "Vehicle"
 				d["type"].append(register[0])
-				d["x_min"].append(register[4])
-				d["y_min"].append(register[5])
-				d["x_max"].append(register[6])
-				d["y_max"].append(register[7])
+				d["x_min"].append(float(register[4]))
+				d["y_min"].append(float(register[5]))
+				d["x_max"].append(float(register[6]))
+				d["y_max"].append(float(register[7]))
+				width  = np.abs(float(register[4])-float(register[6]))
+				d["width"].append(width)
+				heigth  = np.abs(float(register[5])-float(register[7]))
+				d["height"].append(heigth)
 	df = pd.DataFrame(data=d)
 	return df		
