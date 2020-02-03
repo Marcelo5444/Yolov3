@@ -10,8 +10,10 @@ def add_patch(ax,x_min,y_min,x_max,y_max,color):
 	ax.add_patch(patches.Rectangle((x_min,y_min),np.abs(x_min-x_max),np.abs(y_max-y_min),linewidth=2,edgecolor=color,facecolor='none'))
 
 def display_bounding_boxes(df,path_to_images=None,path_to_labels=None,specific_image=None):
-	path_to_labels = "/home/mlrig/Documents/Yolo3 Implementation/data/training/label_2//"
-	path_to_images = "/home/mlrig/Documents/Yolo3 Implementation/data/training/image_2//"
+	if path_to_labels == None:
+		path_to_labels = "/home/mlrig/Documents/Yolo3 Implementation/data/training/label_2//"
+	if path_to_images == None:	
+		path_to_images = "/home/mlrig/Documents/Yolo3 Implementation/data/training/image_2//"
 	"""""Display the image with the label bounding box over it,You can also specify the concrete image """
 	if specific_image is None:
 		data = df.loc[np.random.randint(0,df.shape[0])]
@@ -49,7 +51,8 @@ def display_bounding_boxes(df,path_to_images=None,path_to_labels=None,specific_i
 	plt.show() 			
 
 def create_label_datframe(path_to_labels=None):
-	path_to_labels = "/home/mlrig/Documents/Yolo3 Implementation/data/training/label_2/"
+	if path_to_labels == None:
+		path_to_labels = "/home/mlrig/Documents/Yolo3 Implementation/data/training/label_2//"
 	labels = os.listdir(path_to_labels)
 	d = {"image":[],"type":[],"x_min":[],"y_min":[],"x_max":[],"y_max":[],"height":[],"width":[]}	
 	for label in labels:
