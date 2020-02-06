@@ -100,10 +100,13 @@ def display_bounding_boxes_with_anchors(df,anchors_array,path_to_images=None,pat
 
 			for anchor_iter in range(0,anchors_array.shape[0]):
 				score = IoU_fixed(j["width"],j["height"],anchors_array[anchor_iter][0],anchors_array[anchor_iter][1])
+			#	print("score with anchor",anchor_iter,score)
 				if score > score_group:
 					final_group = anchor_iter
+					score_group  = score
+			#print(final_group,"final_group")	
 			center = (x_min+0.5*j["width"],y_min+0.5*j["height"])
-			print(anchors_array[final_group][0])
+			#print(anchors_array[final_group][0])
 			plot_centered_Anchor(ax,center,j["width"],j["height"],"b")
 			plot_centered_Anchor(ax,center,anchors_array[final_group][0],anchors_array[final_group][1],"r")		
 plt.show()

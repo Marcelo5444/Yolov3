@@ -80,7 +80,7 @@ def kmeans_anchors(data,iterations=10,num_anchors=4,resolution=(1200,400),plot=F
             data[iterator][2] = final_group
 
         anchors = update_anchors(anchors,data)
-        display_anchors(anchors)
+    display_anchors(anchors)
 
 
     return anchors
