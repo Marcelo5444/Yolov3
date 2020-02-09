@@ -6,8 +6,9 @@ from keras.utils.visualize_util import plot
 "http://leiluoray.com/2018/11/10/Implementing-YOLOV3-Using-PyTorch/"
 '''
 Keras Customizable Residual Unit
-
+"https://medium.com/intuitionmachine/notes-on-the-implementation-densenet-in-tensorflow-beeda9dd1504"
 This is a simplified implementation of the basic (no bottlenecks) full pre-activation residual unit from He, K., Zhang, X., Ren, S., Sun, J., "Identity Mappings in Deep Residual Networks" (http://arxiv.org/abs/1603.05027v2).
+
 '''
 
 def conv_block(feat_maps_out, prev):
