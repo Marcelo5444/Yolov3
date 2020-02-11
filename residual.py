@@ -11,6 +11,12 @@ Keras Customizable Residual Unit
 This is a simplified implementation of the basic (no bottlenecks) full pre-activation residual unit from He, K., Zhang, X., Ren, S., Sun, J., "Identity Mappings in Deep Residual Networks" (http://arxiv.org/abs/1603.05027v2).
 
 '''
+"""from pynput.mouse import Button, Controller
+import time
+
+while True:
+    mouse.click(Button.left, 1)
+    time.sleep(30)"""
 
 def conv_block(feat_maps_out, prev):
     prev = BatchNormalization(axis=1, mode=2)(prev) # Specifying the axis and mode allows for later merging
