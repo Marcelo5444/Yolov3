@@ -82,7 +82,7 @@ class MaxPoolStride1(nn.Module):
 
 
 
-def create_modules(blocks):
+def create_modules(blocks,anchors):
     net_info = blocks[0]     #Captures the information about the input and pre-processing
 
     module_list = nn.ModuleList()
@@ -192,23 +192,13 @@ def create_modules(blocks):
 
         #Yolo is the detection layer
         elif x["type"] == "yolo":
-            mask = x["mask"].split(",")
-            mask = [int(x) for x in mask]
-
-
-            anchors = x["anchors"].split(",")
-            anchors = [int(a) for a in anchors]
-            anchors = [(anchors[i], anchors[i+1]) for i in range(0, len(anchors),2)]
-            anchors = [anchors[i] for i in mask]
 
             detection = DetectionLayer(anchors)
             module.add_module("Detection_{}".format(index), detection)
+            print(index)
 
 
 
-        else:
-            print("Something I dunno")
-            assert False
 
 
         module_list.append(module)
